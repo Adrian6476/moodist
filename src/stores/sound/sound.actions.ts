@@ -79,15 +79,29 @@ export const createActions: StateCreator<
           [id]: { ...get().sounds[id], volume },
         },
       });
+
+      // 保存音量设置到localStorage
+      try {
+        const sounds = get().sounds;
+        const volumes = Object.keys(sounds).reduce((acc, soundId) => {
+          acc[soundId] = sounds[soundId].volume;
+          return acc;
+        }, {} as Record<string, number>);
+        
+        localStorage.setItem('moodist-volumes', JSON.stringify(volumes));
+      } catch (error) {
+        console.warn('Failed to save volume settings:', error);
+      }
     },
 
     shuffle() {
       const sounds = get().sounds;
       const ids = Object.keys(sounds);
+      const savedVolumes = JSON.parse(localStorage.getItem('moodist-volumes') || '{}');
 
       ids.forEach(id => {
         sounds[id].isSelected = false;
-        sounds[id].volume = 0.5;
+        sounds[id].volume = savedVolumes[id] ?? 0.5;
       });
 
       const randomIDs = pickMany(ids, 4);
@@ -96,6 +110,18 @@ export const createActions: StateCreator<
         sounds[id].isSelected = true;
         sounds[id].volume = random(0.2, 1);
       });
+
+      // 保存新的音量设置
+      try {
+        const volumes = Object.keys(sounds).reduce((acc, soundId) => {
+          acc[soundId] = sounds[soundId].volume;
+          return acc;
+        }, {} as Record<string, number>);
+        
+        localStorage.setItem('moodist-volumes', JSON.stringify(volumes));
+      } catch (error) {
+        console.warn('Failed to save volume settings:', error);
+      }
 
       set({ history: null, isPlaying: true, sounds });
     },
@@ -143,13 +169,26 @@ export const createActions: StateCreator<
       }
 
       const ids = Object.keys(sounds);
+      const savedVolumes = JSON.parse(localStorage.getItem('moodist-volumes') || '{}');
 
       ids.forEach(id => {
         sounds[id].isSelected = false;
-        sounds[id].volume = 0.5;
+        sounds[id].volume = savedVolumes[id] ?? 0.5;
       });
 
       set({ sounds });
+
+      // 保存新的音量设置到localStorage
+      try {
+        const volumes = Object.keys(sounds).reduce((acc, soundId) => {
+          acc[soundId] = sounds[soundId].volume;
+          return acc;
+        }, {} as Record<string, number>);
+        
+        localStorage.setItem('moodist-volumes', JSON.stringify(volumes));
+      } catch (error) {
+        console.warn('Failed to save volume settings:', error);
+      }
     },
   };
 };

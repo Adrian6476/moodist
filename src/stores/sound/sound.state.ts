@@ -31,27 +31,40 @@ export const createState: StateCreator<
   [],
   SoundState
 > = (set, get) => {
-  const state: SoundState = {
-    getFavorites() {
-      const { sounds } = get();
-      const ids = Object.keys(sounds);
-      const favorites = ids.filter(id => sounds[id].isFavorite);
-
-      return favorites;
-    },
-    history: null,
-    isPlaying: false,
-    locked: false,
-    noSelected() {
-      const { sounds } = get();
-      const keys = Object.keys(sounds);
-
-      return keys.every(key => !sounds[key].isSelected);
-    },
-    sounds: {},
-  };
+    // 从localStorage读取保存的音量设置
+    const getSavedVolumes = () => {
+      try {
+        const saved = localStorage.getItem('moodist-volumes');
+        return saved ? JSON.parse(saved) : {};
+      } catch {
+        return {};
+      }
+    };
+  
+    const state: SoundState = {
+      getFavorites() {
+        const { sounds } = get();
+        const ids = Object.keys(sounds);
+        const favorites = ids.filter(id => sounds[id].isFavorite);
+  
+        return favorites;
+      },
+      history: null,
+      isPlaying: false,
+      locked: false,
+      noSelected() {
+        const { sounds } = get();
+        const keys = Object.keys(sounds);
+  
+        return keys.every(key => !sounds[key].isSelected);
+      },
+      sounds: {},
+    };
 
   const { categories } = sounds;
+
+  // 获取保存的音量设置
+  const savedVolumes = getSavedVolumes();
 
   categories.forEach(category => {
     const { sounds } = category;
@@ -60,7 +73,7 @@ export const createState: StateCreator<
       state.sounds[sound.id] = {
         isFavorite: false,
         isSelected: false,
-        volume: 0.5,
+        volume: savedVolumes[sound.id] ?? 0.5, // 使用保存的音量或默认值
       };
     });
   });
