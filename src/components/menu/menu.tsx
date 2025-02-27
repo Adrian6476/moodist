@@ -7,7 +7,6 @@ import { AnimatePresence, motion } from 'framer-motion';
 import {
   ShuffleItem,
   ShareItem,
-  DonateItem,
   NotepadItem,
   SourceItem,
   PomodoroItem,
@@ -123,7 +122,6 @@ export function Menu() {
                     <ShortcutsItem open={() => open('shortcuts')} />
 
                     <Divider />
-                    <DonateItem />
                     <SourceItem />
                   </motion.div>
                 </DropdownMenu.Content>
