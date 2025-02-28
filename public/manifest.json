@@ -1,0 +1,17 @@
+{
+  "name": "Moodist",
+  "short_name": "Moodist",
+  "description": "Ambient Sounds for Focus and Calm",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#18181b",
+  "theme_color": "#18181b",
+  "icons": [
+    {
+      "src": "/ios-assets/icons/apple-touch-icon.png",
+      "sizes": "180x180",
+      "type": "image/png"
+    }
+  ],
+  "permissions": ["background", "audio"]
+}
