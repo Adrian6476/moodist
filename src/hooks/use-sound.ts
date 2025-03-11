@@ -5,11 +5,6 @@ import { useLoadingStore } from '@/stores/loading';
 import { subscribe } from '@/lib/event';
 import { useSSR } from './use-ssr';
 import { FADE_OUT } from '@/constants/events';
-import { setupMediaSession } from '@/lib/media-session';
-import { setupiOSAudio } from '@/lib/ios-audio';
-
-// 初始化iOS音频支持
-const iosAudio = setupiOSAudio();
 
 /**
  * A custom React hook to manage sound playback using Howler.js with additional features.
@@ -44,21 +39,13 @@ export function useSound(
 
     if (isBrowser) {
       sound = new Howl({
-        html5: true, // 强制使用HTML5 Audio
+        html5,
         onload: () => {
           setIsLoading(src, false);
           setHasLoaded(true);
         },
         preload: options.preload ?? false,
-        src: src,
-        // iOS音频配置
-        format: ['mp3'], // 明确指定格式
-        xhr: {
-          method: 'GET',
-          headers: {
-            'Range': 'bytes=0-' // 支持范围请求
-          }
-        }
+        src: src
       });
     }
 
@@ -84,106 +71,22 @@ export function useSound(
         }
 
         if (!sound.playing()) {
-          // 在播放前初始化音频上下文
-          if (isBrowser) {
-            iosAudio.initAudioContext();
-            
-            // 确保音频会话保持活跃
-            iosAudio.silentAudio?.play().catch(() => {
-              // 忽略自动播放错误
-            });
-          }
-
           sound.play();
-
-          // 更新MediaSession状态
-          if (isBrowser) {
-            setupMediaSession(
-              true,
-              src.split('/').pop()?.replace(/\.[^/.]+$/, '') || 'Ambient Sound',
-              () => sound.play(),
-              () => sound.pause()
-            );
-
-            // 注册visibilitychange事件处理
-            const handleVisibilityChange = () => {
-              if (document.hidden && sound.playing()) {
-                // 确保在后台继续播放
-                const ctx = iosAudio.getAudioContext();
-                if (ctx && ctx.state === 'suspended') {
-                  ctx.resume();
-                }
-              }
-            };
-            
-            document.addEventListener('visibilitychange', handleVisibilityChange);
-            sound.once('end', () => {
-              document.removeEventListener('visibilitychange', handleVisibilityChange);
-            });
-          }
         }
 
         if (typeof cb === 'function') sound.once('end', cb);
       }
     },
-    [src, setIsLoading, sound, hasLoaded, isLoading, isBrowser],
+    [src, setIsLoading, sound, hasLoaded, isLoading],
   );
 
   const stop = useCallback(() => {
-    if (sound) {
-      sound.stop();
-      // 更新MediaSession状态
-      if (isBrowser) {
-        setupMediaSession(
-          false,
-          src.split('/').pop()?.replace(/\.[^/.]+$/, '') || 'Ambient Sound',
-          () => sound.play(),
-          () => sound.pause()
-        );
-
-        // 如果没有其他声音在播放，停止iOS音频会话
-        const audioCtx = iosAudio.getAudioContext();
-        if (audioCtx) {
-          // 检查是否还有其他声音在播放
-          const isAnyPlaying = (Howler as any)._howls.some((h: Howl) => h.playing());
-          if (!isAnyPlaying) {
-            iosAudio.silentAudio?.pause();
-            audioCtx.suspend().catch(() => {
-              // 忽略错误
-            });
-          }
-        }
-      }
-    }
-  }, [sound, src, isBrowser]);
+    if (sound) sound.stop();
+  }, [sound]);
 
   const pause = useCallback(() => {
-    if (sound) {
-      sound.pause();
-      // 更新MediaSession状态
-      if (isBrowser) {
-        setupMediaSession(
-          false,
-          src.split('/').pop()?.replace(/\.[^/.]+$/, '') || 'Ambient Sound',
-          () => sound.play(),
-          () => sound.pause()
-        );
-
-        // 如果没有其他声音在播放，暂停iOS音频会话
-        const audioCtx = iosAudio.getAudioContext();
-        if (audioCtx) {
-          // 检查是否还有其他声音在播放
-          const isAnyPlaying = (Howler as any)._howls.some((h: Howl) => h.playing());
-          if (!isAnyPlaying) {
-            iosAudio.silentAudio?.pause();
-            audioCtx.suspend().catch(() => {
-              // 忽略错误
-            });
-          }
-        }
-      }
-    }
-  }, [sound, src, isBrowser]);
+    if (sound) sound.pause();
+  }, [sound]);
 
   const fadeOut = useCallback(
     (duration: number) => {
