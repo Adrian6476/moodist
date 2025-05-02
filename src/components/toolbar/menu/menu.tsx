@@ -7,7 +7,6 @@ import { AnimatePresence, motion } from 'framer-motion';
 import {
   ShuffleItem,
   ShareItem,
-  DonateItem,
   SourceItem,
   PresetsItem,
   ShortcutsItem,
@@ -153,7 +152,6 @@ export function Menu() {
                     </div>
 
                     <Divider />
-                    <DonateItem />
                     <SourceItem />
                   </motion.div>
                 </DropdownMenu.Content>
