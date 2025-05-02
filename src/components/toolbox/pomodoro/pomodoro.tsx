@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef, useMemo } from 'react';
+import { useState, useEffect, useRef, useMemo, useCallback } from 'react';
 import { FaUndo, FaPlay, FaPause } from 'react-icons/fa/index';
 import { IoMdSettings } from 'react-icons/io/index';
 
@@ -28,11 +28,24 @@ export function Pomodoro({ onClose, open, show }: PomodoroProps) {
 
   const running = usePomodoroStore(state => state.running);
   const setRunning = usePomodoroStore(state => state.setRunning);
+  const [notificationPermission, setNotificationPermission] = useState('default');
 
   const [timer, setTimer] = useState(0);
   const interval = useRef<ReturnType<typeof setInterval> | null>(null);
 
   const alarm = useSoundEffect('/sounds/alarm.mp3');
+
+  // Check initial notification permission on mount
+  useEffect(() => {
+    if ('Notification' in window) {
+      if (Notification.permission === 'default') {
+        // Request permission on mount if not already granted or denied
+        Notification.requestPermission().then(setNotificationPermission);
+      } else {
+        setNotificationPermission(Notification.permission);
+      }
+    }
+  }, []);
 
   const defaultTimes = useMemo(
     () => ({
@@ -77,11 +90,34 @@ export function Pomodoro({ onClose, open, show }: PomodoroProps) {
     }
   }, [running]);
 
+  const showNotification = useCallback(() => {
+    let message = '';
+    switch (selectedTab) {
+      case 'pomodoro':
+        message = 'Work session finished! Time for a break.';
+        break;
+      case 'short':
+        message = 'Short break over! Back to work.';
+        break;
+      case 'long':
+        message = 'Long break over! Ready for the next session?';
+        break;
+      default:
+        message = 'Timer finished!';
+    }
+
+    if (notificationPermission === 'granted') {
+      new Notification(message, { icon: '/favicon.svg' });
+    }
+    // If 'default' or 'denied', do nothing (permission requested on mount)
+  }, [notificationPermission, selectedTab]);
+
   useEffect(() => {
     if (timer <= 0 && running) {
       if (interval.current) clearInterval(interval.current);
 
       alarm.play();
+      showNotification(); // Show notification when timer ends
 
       setRunning(false);
       setCompletions(prev => ({
@@ -89,7 +125,7 @@ export function Pomodoro({ onClose, open, show }: PomodoroProps) {
         [selectedTab]: prev[selectedTab] + 1,
       }));
     }
-  }, [timer, selectedTab, running, setRunning, alarm]);
+  }, [timer, selectedTab, running, setRunning, alarm, showNotification]); // Add showNotification dependency
 
   useEffect(() => {
     const time = times[selectedTab] || 10;

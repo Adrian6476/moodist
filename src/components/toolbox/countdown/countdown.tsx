@@ -21,8 +21,28 @@ export function Countdown({ onClose, show }: CountdownProps) {
   const [initialTime, setInitialTime] = useState(0);
   const [isActive, setIsActive] = useState(false);
   const [isFormVisible, setIsFormVisible] = useState(true);
+  const [notificationPermission, setNotificationPermission] = useState('default');
 
   const alarm = useSoundEffect('/sounds/alarm.mp3');
+
+  // Check initial notification permission on mount
+  useEffect(() => {
+    if ('Notification' in window) {
+      if (Notification.permission === 'default') {
+        // Request permission on mount if not already granted or denied
+        Notification.requestPermission().then(setNotificationPermission);
+      } else {
+        setNotificationPermission(Notification.permission);
+      }
+    }
+  }, []);
+
+  const showNotification = useCallback(() => {
+    if (notificationPermission === 'granted') {
+      new Notification('Countdown finished!', { icon: '/favicon.svg' });
+    }
+    // If 'default' or 'denied', do nothing (permission requested on mount)
+  }, [notificationPermission]);
 
   useEffect(() => {
     let timer: NodeJS.Timeout;
@@ -31,12 +51,13 @@ export function Countdown({ onClose, show }: CountdownProps) {
       timer = setTimeout(() => setTimeLeft(timeLeft - 1), 1000);
     } else if (timeLeft === 0 && isActive) {
       alarm.play();
+      showNotification(); // Show notification when timer ends
       setIsActive(false);
       setIsFormVisible(true);
     }
 
     return () => clearTimeout(timer);
-  }, [isActive, timeLeft, alarm]);
+  }, [isActive, timeLeft, alarm, showNotification]); // Add showNotification dependency
 
   const handleStart = useCallback(() => {
     if (hours > 0 || minutes > 0 || seconds > 0) {
