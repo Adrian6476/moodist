@@ -28,7 +28,8 @@ export function Pomodoro({ onClose, open, show }: PomodoroProps) {
 
   const running = usePomodoroStore(state => state.running);
   const setRunning = usePomodoroStore(state => state.setRunning);
-  const [notificationPermission, setNotificationPermission] = useState('default');
+  const [notificationPermission, setNotificationPermission] =
+    useState('default');
 
   const [timer, setTimer] = useState(0);
   const interval = useRef<ReturnType<typeof setInterval> | null>(null);

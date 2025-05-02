@@ -21,7 +21,8 @@ export function Countdown({ onClose, show }: CountdownProps) {
   const [initialTime, setInitialTime] = useState(0);
   const [isActive, setIsActive] = useState(false);
   const [isFormVisible, setIsFormVisible] = useState(true);
-  const [notificationPermission, setNotificationPermission] = useState('default');
+  const [notificationPermission, setNotificationPermission] =
+    useState('default');
 
   const alarm = useSoundEffect('/sounds/alarm.mp3');
 

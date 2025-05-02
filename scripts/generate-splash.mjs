@@ -45,7 +45,10 @@ async function generateSplashScreens() {
 
       // Load SVG, render at high DPI, resize
       const resizedIconBuffer = await sharp(INPUT_SVG, { density: DPI })
-        .resize(iconSize, iconSize, { fit: 'contain', background: { r: 0, g: 0, b: 0, alpha: 0 } }) // Resize icon, ensure transparent background
+        .resize(iconSize, iconSize, {
+          fit: 'contain',
+          background: { r: 0, g: 0, b: 0, alpha: 0 },
+        }) // Resize icon, ensure transparent background
         .png() // Convert to PNG buffer
         .toBuffer();
 
