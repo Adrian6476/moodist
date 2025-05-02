@@ -41,6 +41,17 @@ const description =
     <meta content="summary_large_image" name="twitter:card" />
 
     {pwaInfo && <Fragment set:html={pwaInfo.webManifest.linkTag} />}
+{/* Apple Touch Startup Images (Splash Screens) */}
+    <link href="/assets/splash/apple-launch-750x1334.png" media="(device-width: 375px) and (device-height: 667px) and (-webkit-device-pixel-ratio: 2)" rel="apple-touch-startup-image" /> {/* iPhone 6/7/8 */}
+    <link href="/assets/splash/apple-launch-1125x2436.png" media="(device-width: 375px) and (device-height: 812px) and (-webkit-device-pixel-ratio: 3)" rel="apple-touch-startup-image" /> {/* iPhone X/XS/11 Pro */}
+    <link href="/assets/splash/apple-launch-1170x2532.png" media="(device-width: 390px) and (device-height: 844px) and (-webkit-device-pixel-ratio: 3)" rel="apple-touch-startup-image" /> {/* iPhone 12/13/14 Pro */}
+    <link href="/assets/splash/apple-launch-1284x2778.png" media="(device-width: 428px) and (device-height: 926px) and (-webkit-device-pixel-ratio: 3)" rel="apple-touch-startup-image" /> {/* iPhone 12/13 Pro Max */}
+    <link href="/assets/splash/apple-launch-1290x2796.png" media="(device-width: 430px) and (device-height: 932px) and (-webkit-device-pixel-ratio: 3)" rel="apple-touch-startup-image" /> {/* iPhone 14/15 Pro Max */}
+    <link href="/assets/splash/apple-launch-1536x2048.png" media="(device-width: 768px) and (device-height: 1024px) and (-webkit-device-pixel-ratio: 2)" rel="apple-touch-startup-image" /> {/* iPad Mini/Air */}
+    <link href="/assets/splash/apple-launch-1668x2224.png" media="(device-width: 834px) and (device-height: 1112px) and (-webkit-device-pixel-ratio: 2)" rel="apple-touch-startup-image" /> {/* iPad Air 3 */}
+    <link href="/assets/splash/apple-launch-1668x2388.png" media="(device-width: 834px) and (device-height: 1194px) and (-webkit-device-pixel-ratio: 2)" rel="apple-touch-startup-image" /> {/* iPad Pro 11" */}
+    <link href="/assets/splash/apple-launch-1770x2360.png" media="(device-width: 885px) and (device-height: 1180px) and (-webkit-device-pixel-ratio: 2)" rel="apple-touch-startup-image" /> {/* iPad Air 4/5, iPad 10 - Note: Approximated media query */}
+    <link href="/assets/splash/apple-launch-2048x2732.png" media="(device-width: 1024px) and (device-height: 1366px) and (-webkit-device-pixel-ratio: 2)" rel="apple-touch-startup-image" /> {/* iPad Pro 12.9" */}
   </head>
   <body>
     <slot />
