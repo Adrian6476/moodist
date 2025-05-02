@@ -1,7 +1,6 @@
 import { AnimatePresence } from 'framer-motion';
 
 import { Category } from './category';
-import { Donate } from './donate';
 
 import type { Categories } from '@/data/types';
 
@@ -15,8 +14,6 @@ export function Categories({ categories }: CategoriesProps) {
       {categories.map((category, index) => (
         <div key={category.id}>
           <Category functional={category.id !== 'favorites'} {...category} />
-
-          {index === 3 && <Donate />}
         </div>
       ))}
     </AnimatePresence>
