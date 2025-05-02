@@ -1,9 +1,10 @@
 FROM docker.io/node:20-alpine3.18 AS build
 WORKDIR /app
-COPY package*.json ./
-RUN npm install
+COPY package*.json pnpm-lock.yaml ./
+RUN npm install -g pnpm
+RUN pnpm install
 COPY . .
-RUN npm run build
+RUN pnpm run build
 
 FROM docker.io/nginx:alpine AS runtime
 COPY ./docker/nginx/nginx.conf /etc/nginx/nginx.conf
