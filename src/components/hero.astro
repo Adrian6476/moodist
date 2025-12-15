@@ -2,7 +2,6 @@
 import { BsSoundwave } from 'react-icons/bs/index';
 
 import { Container } from './container';
-import { CipherText } from './cipher';
 
 import { count as soundCount } from '@/lib/sounds';
 
@@ -27,9 +26,7 @@ const count = soundCount();
       <h1 class="title">
         Ambient Sounds<span class="line">For Focus and Calm</span>
       </h1>
-      <h2 class="desc">
-        Free and <CipherText client:load text="Open-Source" />.
-      </h2>
+      <h2 class="desc">Free and Open-Source.</h2>
 
       <p class="sounds">
         <span aria-hidden="true" class="icon">
@@ -64,6 +61,20 @@ const count = soundCount();
         background-size: 21px 21px;
         opacity: 0.8;
         mask-image: linear-gradient(#fff, transparent, transparent);
+
+        &::before {
+          position: absolute;
+          top: 0;
+          left: 50%;
+          width: 300px;
+          height: 100px;
+          content: '';
+          background: var(--color-neutral-200);
+          filter: blur(50px);
+          border-radius: 100%;
+          opacity: 0.8;
+          transform: translate(-50%, -50%);
+        }
       }
     }
 
@@ -86,17 +97,7 @@ const count = soundCount();
       font-family: var(--font-display);
       font-size: var(--font-xlg);
       font-weight: 600;
-      line-height: 1;
-
-      /* & .gradient {
-        background: linear-gradient(
-          135deg,
-          var(--color-foreground),
-          var(--color-foreground-subtle)
-        );
-        background-clip: text;
-        -webkit-text-fill-color: transparent;
-      } */
+      line-height: 1.1;
 
       & .line {
         display: block;

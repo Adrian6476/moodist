@@ -2,6 +2,74 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.4.0](https://github.com/remvze/moodist/compare/v2.3.0...v2.4.0) (2025-11-25)
+
+
+### ✨ Features
+
+* add audio session type ([3a96d38](https://github.com/remvze/moodist/commit/3a96d38a774c7675811d5a3ea323a49d9d129bbc))
+
+## [2.3.0](https://github.com/remvze/moodist/compare/v2.2.0...v2.3.0) (2025-11-24)
+
+
+### 🚚 Chores
+
+* change silence ([b921629](https://github.com/remvze/moodist/commit/b921629ee33c4a18a86258ba204921f732f404ff))
+
+
+### ✨ Features
+
+* turn links into buttons ([d016076](https://github.com/remvze/moodist/commit/d0160763eeb66ba47dd06098b1f2a84e234fca36))
+
+## [2.2.0](https://github.com/remvze/moodist/compare/v2.1.0...v2.2.0) (2025-11-24)
+
+
+### ✨ Features
+
+* add category icons ([642a551](https://github.com/remvze/moodist/commit/642a5512267ce66492cf86f222fa01714960162a))
+* add shine effect ([d9df0d4](https://github.com/remvze/moodist/commit/d9df0d4b2c5071c12cecc6452acc0f160c57deb5))
+* change lofi icon ([066af9e](https://github.com/remvze/moodist/commit/066af9e2f31bc9201d349d888c6dc19cd5ad7750))
+* extract the provider for the tooltip ([95b641a](https://github.com/remvze/moodist/commit/95b641a88f2eee264b59b5bd62206bb84119da57))
+* make sound file addresses relative ([81d9d7c](https://github.com/remvze/moodist/commit/81d9d7ca03f6c7410ca750e069c9c8b935114950))
+* migrate to motion and fix some animations ([b191e60](https://github.com/remvze/moodist/commit/b191e6067ddc3233689a34946c602db36d6133ba))
+* replace the silence file ([e160d26](https://github.com/remvze/moodist/commit/e160d2667737b47c18b08887735be26f21bf52ae))
+
+
+### 💄 Styling
+
+* add animation on active ([50687c9](https://github.com/remvze/moodist/commit/50687c97ca483f4de3ee7633d333dfcb4def0c4d))
+* change cursor ([6ac65c1](https://github.com/remvze/moodist/commit/6ac65c1948ad93fed012a8203fc8c6c2b2898b5b))
+* change snackbar styles ([1e5bda7](https://github.com/remvze/moodist/commit/1e5bda707cc202407b179e2d1b95dec34bfe9420))
+* decrease background opacity ([a071ba0](https://github.com/remvze/moodist/commit/a071ba04c7e86b3056049492386516b58c4210c0))
+* increase border radius ([e2bb4dd](https://github.com/remvze/moodist/commit/e2bb4dd55fbf17e777ddbb6825e400bd023da328))
+* increase line height ([a179c09](https://github.com/remvze/moodist/commit/a179c09d0c637d33d310960dbf3e92af4b5c526b))
+* increase text color ([d11a6ab](https://github.com/remvze/moodist/commit/d11a6ab062061da5809ebddd6eb39b17c2cd3862))
+* minor changes ([04c5296](https://github.com/remvze/moodist/commit/04c52962c3b65ebb7875ebadf20132846a5c020b))
+* remove cipher animation ([3feb9c1](https://github.com/remvze/moodist/commit/3feb9c1a09b52a35d79cebb7ece54989e9faf481))
+
+## [2.1.0](https://github.com/remvze/moodist/compare/v2.0.1...v2.1.0) (2025-07-19)
+
+
+### 🚚 Chores
+
+* add banner ([fb82117](https://github.com/remvze/moodist/commit/fb82117742c2a0beb8937a76fcd5f313230cd418))
+* refine logo ([755c442](https://github.com/remvze/moodist/commit/755c4422635e475b8d3b0f26e3cf493a59ff3065))
+* update banner ([a0a7f94](https://github.com/remvze/moodist/commit/a0a7f94c3328c65d4fc756ca52455461a05657ab))
+* update banner ([2f994c6](https://github.com/remvze/moodist/commit/2f994c6094ad1948c14346badbc4462ae7782904))
+* update the logo ([348fc1e](https://github.com/remvze/moodist/commit/348fc1e8c4561481e5ad1d4528e8ee480d0e2fb4))
+
+
+### 🐛 Bug Fixes
+
+* **component:** update oscillators frequency on preset change ([dcc91e0](https://github.com/remvze/moodist/commit/dcc91e038d806994382baa19b3d238da4a8ecaae))
+* fixate the binary pattern ([4996cc8](https://github.com/remvze/moodist/commit/4996cc893c480ab77cf27a27801dba96771eadc5))
+* replace generator with static silent audio ([af09607](https://github.com/remvze/moodist/commit/af096077aed6c42d4ff77303e6f3c1d39cd87209))
+
+
+### ✨ Features
+
+* add lofi music play ([fcbe50c](https://github.com/remvze/moodist/commit/fcbe50c78c30e4422aea2ed698fff777fcaea1c4))
+
 ### [2.0.1](https://github.com/remvze/moodist/compare/v2.0.0...v2.0.1) (2025-03-25)
 
 ### 🐛 Bug Fixes

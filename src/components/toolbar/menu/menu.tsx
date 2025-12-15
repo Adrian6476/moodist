@@ -2,7 +2,7 @@ import { useState, useMemo, useCallback } from 'react';
 import { IoMenu, IoClose } from 'react-icons/io5/index';
 import * as DropdownMenu from '@radix-ui/react-dropdown-menu';
 import { useHotkeys } from 'react-hotkeys-hook';
-import { AnimatePresence, motion } from 'framer-motion';
+import { AnimatePresence, motion } from 'motion/react';
 
 import {
   ShuffleItem,
@@ -18,6 +18,7 @@ import {
   CountdownItem,
   BinauralItem,
   IsochronicItem,
+  LofiItem,
 } from './items';
 import { Divider } from './divider';
 import { ShareLinkModal } from '@/components/modals/share-link';
@@ -27,6 +28,7 @@ import { SleepTimerModal } from '@/components/modals/sleep-timer';
 import { BreathingExerciseModal } from '@/components/modals/breathing';
 import { BinauralModal } from '@/components/modals/binaural';
 import { IsochronicModal } from '@/components/modals/isochronic';
+import { LofiModal } from '@/components/modals/lofi';
 import { Pomodoro, Notepad, Todo, Countdown } from '@/components/toolbox';
 import { Slider } from '@/components/slider';
 
@@ -50,6 +52,7 @@ export function Menu() {
       breathing: false,
       countdown: false,
       isochronic: false,
+      lofi: false,
       notepad: false,
       pomodoro: false,
       presets: false,
@@ -136,6 +139,7 @@ export function Menu() {
                     <Divider />
                     <BinauralItem open={() => open('binaural')} />
                     <IsochronicItem open={() => open('isochronic')} />
+                    <LofiItem open={() => open('lofi')} />
 
                     <Divider />
                     <ShortcutsItem open={() => open('shortcuts')} />
@@ -191,6 +195,7 @@ export function Menu() {
         show={modals.isochronic}
         onClose={() => close('isochronic')}
       />
+      <LofiModal show={modals.lofi} onClose={() => close('lofi')} />
     </>
   );
 }
