@@ -2,6 +2,55 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.6.0](https://github.com/remvze/moodist/compare/v2.5.2...v2.6.0) (2026-05-02)
+
+
+### 🚚 Chores
+
+* update the readme ([be27a08](https://github.com/remvze/moodist/commit/be27a08092575131d93a0898a71dc1094151c573))
+
+
+### ✨ Features
+
+* add fading effect ([ad32975](https://github.com/remvze/moodist/commit/ad3297547d5781e8c281820e3d3ca6307eee325c))
+
+
+### ♻️ Code Refactoring
+
+* flatten and inline stores ([0e49a2c](https://github.com/remvze/moodist/commit/0e49a2c80fe11bfd938cf93aeceea440e19f6668))
+
+### [2.5.2](https://github.com/remvze/moodist/compare/v2.5.1...v2.5.2) (2026-04-27)
+
+
+### 🚚 Chores
+
+* add workbox-window to the devdeps ([4070f6c](https://github.com/remvze/moodist/commit/4070f6c1555e90acb76a0ba566e3b5a44d4c7217))
+
+### [2.5.1](https://github.com/remvze/moodist/compare/v2.5.0...v2.5.1) (2026-04-27)
+
+
+### 🐛 Bug Fixes
+
+* pnpm installation ([6af5d8c](https://github.com/remvze/moodist/commit/6af5d8c3b728d20a9815781ff27fe4bd9f66890d))
+
+## [2.5.0](https://github.com/remvze/moodist/compare/v2.4.1...v2.5.0) (2026-04-27)
+
+
+### 🐛 Bug Fixes
+
+* minor ([0f7a1c7](https://github.com/remvze/moodist/commit/0f7a1c771cc097bf340c8a7969b2f4dc65fedc00))
+
+### [2.4.1](https://github.com/remvze/moodist/compare/v2.4.0...v2.4.1) (2026-04-27)
+
+
+### 🚚 Chores
+
+* change npm to pnpm ([8fb0bb9](https://github.com/remvze/moodist/commit/8fb0bb9f20fd0f7e6b8b59871304592b39fe7927))
+* remove Storybook ([cc97dc3](https://github.com/remvze/moodist/commit/cc97dc301e745ef70b68b6ce853f452ad4686589))
+* remove Vitest ([874819a](https://github.com/remvze/moodist/commit/874819a638ed6cb98b3bd20c0ae301dba811de54))
+* replace nginx with Caddy ([6a8448a](https://github.com/remvze/moodist/commit/6a8448a64b2dbd45140e10bd19ac5a754c578000))
+* switch to pnpm ([8785215](https://github.com/remvze/moodist/commit/8785215350443eea1763329740a9cc04bc6a4386))
+
 ## [2.4.0](https://github.com/remvze/moodist/compare/v2.3.0...v2.4.0) (2025-11-25)
 
 
