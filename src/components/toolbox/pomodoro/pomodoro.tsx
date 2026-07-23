@@ -2,7 +2,7 @@ import { useState, useEffect, useRef, useMemo, useCallback } from 'react';
 import { FaUndo, FaPlay, FaPause } from 'react-icons/fa/index';
 import { IoMdSettings } from 'react-icons/io/index';
 
-import { Modal } from '@/components/modal';
+import { Modal, ModalHeader, ModalTitle } from '@/components/modal';
 import { Button } from '../generics/button';
 import { Timer } from './timer';
 import { Tabs } from './tabs';
@@ -161,8 +161,8 @@ export function Pomodoro({ onClose, open, show }: PomodoroProps) {
   return (
     <>
       <Modal show={show} onClose={onClose}>
-        <header className={styles.header}>
-          <h2 className={styles.title}>Pomodoro Timer</h2>
+        <ModalHeader className={styles.header}>
+          <ModalTitle className={styles.title}>Pomodoro Timer</ModalTitle>
 
           <div className={styles.button}>
             <Button
@@ -174,7 +174,7 @@ export function Pomodoro({ onClose, open, show }: PomodoroProps) {
               }}
             />
           </div>
-        </header>
+        </ModalHeader>
 
         <Tabs selectedTab={selectedTab} tabs={tabs} onSelect={setSelectedTab} />
         <Timer timer={timer} />

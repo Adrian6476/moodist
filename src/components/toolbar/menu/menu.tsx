@@ -1,6 +1,6 @@
 import { useState, useMemo, useCallback } from 'react';
 import { IoMenu, IoClose } from 'react-icons/io5/index';
-import * as DropdownMenu from '@radix-ui/react-dropdown-menu';
+import { DropdownMenu } from 'radix-ui';
 import { useHotkeys } from 'react-hotkeys-hook';
 import { AnimatePresence, motion } from 'motion/react';
 
@@ -101,7 +101,11 @@ export function Menu() {
   return (
     <>
       <div className={styles.wrapper}>
-        <DropdownMenu.Root open={isOpen} onOpenChange={o => setIsOpen(o)}>
+        <DropdownMenu.Root
+          modal={false}
+          open={isOpen}
+          onOpenChange={o => setIsOpen(o)}
+        >
           <DropdownMenu.Trigger asChild>
             <button aria-label="Menu" className={styles.menuButton}>
               {isOpen ? <IoClose /> : <IoMenu />}

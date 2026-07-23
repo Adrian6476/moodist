@@ -1,7 +1,13 @@
 import { useState } from 'react';
 import YouTube from 'react-youtube';
 
-import { Modal } from '@/components/modal/modal';
+import {
+  Modal,
+  ModalActions,
+  ModalButton,
+  ModalHeader,
+  ModalTitle,
+} from '@/components/modal';
 
 import styles from './lofi.module.css';
 import { padNumber } from '@/helpers/number';
@@ -14,7 +20,7 @@ interface LofiProps {
 const videos = [
   {
     channel: 'Lofi Girl',
-    id: 'jfKfPfyJRdk',
+    id: 'X4VbdwhkE10',
     title: 'lofi hip hop radio',
   },
   {
@@ -24,7 +30,7 @@ const videos = [
   },
   {
     channel: 'Lofi Girl',
-    id: 'P6Segk8cr-c',
+    id: 'CwPCy1GLS38',
     title: 'sad lofi radio',
   },
   {
@@ -34,8 +40,8 @@ const videos = [
   },
   {
     channel: 'Lofi Girl',
-    id: 'TtkFsfOP9QI',
-    title: 'peaceful piano radio',
+    id: 'N0snMcR6aaA',
+    title: 'relaxing piano radio',
   },
 ];
 
@@ -44,7 +50,9 @@ export function LofiModal({ onClose, show }: LofiProps) {
 
   return (
     <Modal persist show={show} onClose={onClose}>
-      <h1 className={styles.title}>Lofi Music Player</h1>
+      <ModalHeader>
+        <ModalTitle>Lofi Music Player</ModalTitle>
+      </ModalHeader>
 
       {!isAccepted ? (
         <div className={styles.notice}>
@@ -55,15 +63,12 @@ export function LofiModal({ onClose, show }: LofiProps) {
             this data.
           </p>
 
-          <div className={styles.buttons}>
-            <button onClick={onClose}>Cancel</button>
-            <button
-              className={styles.primary}
-              onClick={() => setIsAccepted(true)}
-            >
+          <ModalActions>
+            <ModalButton onClick={onClose}>Cancel</ModalButton>
+            <ModalButton variant="primary" onClick={() => setIsAccepted(true)}>
               Continue
-            </button>
-          </div>
+            </ModalButton>
+          </ModalActions>
         </div>
       ) : (
         <div className={styles.videos}>
